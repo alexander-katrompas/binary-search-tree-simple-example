@@ -1,16 +1,18 @@
 #include "bintree.h"
 
 BinTree::BinTree() {
+    // this is the correct constructor
     root = NULL;
 }
 
-void BinTree::addNodes(int ids[], string strings[]) {
-    //this is NOT a correct solution, you CANNOT use this assignments
-
-    /*
-     * This builds a hard coded tree based on the known test data.
-     * It is simply for testing and proving displayInOrder traversal
-     * and nothing else.
+BinTree::BinTree(int ids[], string strings[]) {
+    /* this is NOT a correct constructor,
+     * you CANNOT use this assignments
+     * *****************
+     * this is an alternate constructor for demonstration
+     * purposes only. This builds a hard coded tree
+     * based on the known test data. It is simply for
+     * demonstration and proving displayInOrder traversal.
      */
     root = new DataNode;
     root->left = NULL;
