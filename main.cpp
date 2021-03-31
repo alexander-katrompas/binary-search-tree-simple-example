@@ -11,13 +11,12 @@ int main() {
     /*
      *  make and display tree
      */
-    BinTree *binSearchTree = new BinTree;
-    binSearchTree->addNodes(ids, strings);
+    BinTree binSearchTree(ids, strings);
     cout << endl << "Binary Search Tree created" << endl << endl;
 
     cout << "Displaying In Order" << endl;
     cout << "===================" << endl;
-    binSearchTree->displayInOrder();
+    binSearchTree.displayInOrder();
 
     cout << endl;
     return 0;
