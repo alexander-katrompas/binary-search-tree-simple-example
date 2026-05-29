@@ -1,19 +1,44 @@
+/* *************************************************
+*  Name: Alexander Katrompas
+*  Assignment: Demonstration Code
+*  Purpose: This code defines the BinTree class, which represents a binary
+*           tree data structure. It includes a constructor, a method to display
+*           the tree in order, and a private member variable for the root of the tree.
+*           The class also includes a private helper method for displaying the tree in
+*           order starting from a given node.
+************************************************* */
+
 #include "bintree.h"
 
 BinTree::BinTree() {
-    // this is the correct constructor
+    /* ********************************************************************
+     * @breif: this is the correct constructor, you can use this in your
+     *         assignment. It initializes the root of the tree to NULL,
+     *         indicating that the tree is initially empty. This constructor
+     *         does not take any parameters and does not perform any
+     *         additional operations.
+     *
+     * @param : none
+     * @exception : none
+     * @return : void
+     * *******************************************************************/
     root = NULL;
 }
 
 BinTree::BinTree(int ids[], string strings[]) {
-    /* this is NOT a correct constructor,
-     * you CANNOT use this assignments
-     * *****************
-     * this is an alternate constructor for demonstration
-     * purposes only. This builds a hard coded tree
-     * based on the known test data. It is simply for
-     * demonstration and proving displayInOrder traversal.
-     */
+    /* ********************************************************************
+    * @breif: this is NOT a correct constructor,you CANNOT use this assignments
+     *        this is an alternate constructor for demonstration
+     *        purposes only. This builds a hard coded tree
+     *        based on the known test data. It is simply for
+     *        demonstration and proving displayInOrder traversal.
+     *
+     * @param ids : an array of integers representing the IDs for the nodes in the binary tree.
+     * @param strings : an array of strings representing the information for the nodes in the binary tree.
+     * @exception : none
+     * @return : void
+     * *******************************************************************/
+
     root = new DataNode;
     root->left = NULL;
     root->right = NULL;
@@ -59,7 +84,53 @@ BinTree::BinTree(int ids[], string strings[]) {
     return;
 }
 
+/*
+ The structure of displayInOrder is the standard way to implement recursion in
+ a case like this. You will have a public method that is called by the user,
+ and then a private helper method that actually performs the recursive traversal.
+ The reason for this is that the user should not have to know about the internal
+ structure of the tree or how to call the recursive method, and cannot have access
+ to root. The public method can simply call the private helper method starting from
+ the root of the tree, and the private helper method can handle the traversal
+ logic without exposing it to the user. This separation of concerns makes the code
+ cleaner and easier to use, as the user can simply call displayInOrder() without
+ needing to worry about the details of how the tree is structured or how the
+ recursion works.
+
+ All the recursive methods will be similar to this. For example, to implement addNode,
+ you would have a public addNode method that takes the data to be added, and then a
+ private helper method that takes a DataNode pointer and the data to be added.
+ The public addNode method would call the private helper method starting from the
+ root of the tree, and the private helper method would handle the logic for finding
+ the correct location to add the new node based on the binary search tree properties.
+ This way, the user can simply call addNode(id, data) without needing to worry about how
+ the tree is structured or how to navigate it to find the correct location for the new node.
+
+*/
+
+
+void BinTree::displayInOrder() {
+    /* ********************************************************************
+     * @breif: this is the correct displayInOrder method, you can use this in your assignment.
+     *         It calls the private helper method displayInOrder(DataNode*) starting from the root of the tree.
+     *
+     * @param : none
+     * @exception : none
+     * @return : void
+     * *******************************************************************/
+    displayInOrder(root);
+}
+
 void BinTree::displayInOrder(DataNode *temproot) {
+    /* ********************************************************************
+     * @breif: this is the correct displayInOrder helper method, you can use this in your assignment.
+     *         It performs an in-order traversal of the binary tree starting from the given node (temproot).
+     *         The method recursively visits the left subtree, prints the current node's data, and then visits the right subtree.
+     *
+     * @param temproot : a pointer to a DataNode representing the current node in the binary tree during the traversal.
+     * @exception : none
+     * @return : void
+     * *******************************************************************/
     
     if (temproot) {
         if (temproot->left) {
@@ -74,6 +145,3 @@ void BinTree::displayInOrder(DataNode *temproot) {
     return;
 }
 
-void BinTree::displayInOrder() {
-    displayInOrder(root);
-}
